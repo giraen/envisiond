@@ -1,4 +1,4 @@
-## Getting Started First, run the development server:
+## Getting Started, to run the development server:
 
 ```bash
 npm run dev
@@ -28,7 +28,7 @@ git add .
 git commit -m "your comment here"
 ```
 
-***NOTE:** Before pushing on a new feature, check if there is a new update from the dev branch
+**NOTE:** Before pushing on a new feature, check if there is a new update from the dev branch
 ```bash
 git checkout dev
 git pull origin dev
@@ -37,9 +37,15 @@ git merge dev
 git push origin [feature-your-name]
 ```
 
-***NOTE:** Before starting on a new feature, check if there is a new update from the dev branch
+**NOTE:** Before starting on a new feature, check if there is a new update from the dev branch
 ```bash
 git checkout dev
 git pull origin dev
 git checkout -b [feature-your-name]
 ```
+
+**NOTE:** For first time cloning of the repository, run
+```bash
+npm install
+```
+This command will run the necessary packages for the project to run
