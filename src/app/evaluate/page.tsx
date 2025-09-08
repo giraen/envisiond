@@ -2,9 +2,9 @@
 import { useEffect, useRef, useState } from "react";
 
 export default function EvaluatePage() {
-  const videoRef = useRef(null);
-  const canvasRef = useRef(null);
-  const [photoURL, setPhotoURL] = useState(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [photoURL, setPhotoURL] = useState<string | null>(null);
 
   useEffect(() => {
     // Request access to the user's camera
