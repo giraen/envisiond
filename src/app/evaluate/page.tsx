@@ -1,82 +1,80 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useState } from 'react';
+import Link from 'next/link';
+import {Aperture as ApertureIcon} from 'lucide-react';
+import {CloudUpload as CloudUploadIcon} from 'lucide-react';
 
 export default function EvaluatePage() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [photoURL, setPhotoURL] = useState<string | null>(null);
-
-  useEffect(() => {
-    // Request access to the user's camera
-    navigator.mediaDevices
-      .getUserMedia({ video: true })
-      .then((stream) => {
-        if (videoRef.current) {
-          videoRef.current.srcObject = stream;
-        }
-      })
-      .catch((error) => {
-        console.error("Error accessing the camera: ", error);
-      });
-  }, []);
-
-  const capturePhoto = () => {
-    const video = videoRef.current;
-    const canvas = canvasRef.current;
-
-    if (video && canvas) {
-      const context = canvas.getContext("2d");
-      canvas.width = video.videoWidth;
-      canvas.height = video.videoHeight;
-      context.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-      // Convert canvas to image URL
-      const imageURL = canvas.toDataURL("image/png");
-      setPhotoURL(imageURL);
+  
+  // PDF JS
+  const [isDraggedOver, setIsDraggedOver] = useState(false); // State to track if an item is being dragged over the drop zone
+  
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    // This is necessary to allow the drop event to fire
+    e.preventDefault(); 
+    if (!isDraggedOver) {
+      setIsDraggedOver(true);
     }
   };
 
-  const savePhoto = () => {
-    if (photoURL) {
-      const link = document.createElement("a");
-      link.href = photoURL;
-      link.download = "captured-photo.png";
-      link.click();
-    }
+  const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setIsDraggedOver(false);
   };
 
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setIsDraggedOver(false);
+    console.log("File dropped!", e.dataTransfer.files);
+    // Add logic here to process the dropped file
+  };
+
+  const PDFButtonClick = () => {
+    console.log("Upload PDF button was clicked!");
+  };
+
+  const dropZoneClasses = `
+    flex flex-col items-center justify-center p-4 w-110 h-160
+    ${isDraggedOver ? 'border-4 border-blue-500 shadow-2xl' : ''}
+  `;
+
+  
   return (
-    <div className="flex flex-col items-center justify-center p-4">
-      <h1 className="text-xl font-bold mb-4">Camera Capture Demo</h1>
 
-      <video ref={videoRef} autoPlay className="w-full max-w-md rounded-lg shadow" />
+    <div className="flex flex-col items-center justify-center h-screen">
 
-      <div className="mt-4 flex gap-2">
-        <button
-          onClick={capturePhoto}
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700"
-        >
-          Capture Photo
-        </button>
-        {photoURL && (
-          <button
-            onClick={savePhoto}
-            className="px-4 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700"
+        {/*Headers and Description*/}
+        <p className="text-white-400 text-center text-3xl font-bold mb-1">Generate New Report</p>
+        <p className="text-white-400 text-center italic">Select your preferred method for Electronics Bill Report.</p>
+
+        {/*Two Boxes for Capture or Upload*/}
+        <div className="flex items-center justify-center">
+
+          {/*Box 1: Capture with Camera*/}
+          <div className="flex flex-col items-center justify-center p-4 w-110 h-160 mr-50">
+            <ApertureIcon color="white" size={250} strokeWidth={0.5}></ApertureIcon>
+            <p className="text-white-400 text-center">Scan your Electronics Plan directly with your device’s camera for instant symbol detection and fee computation.</p>
+            <Link href="/evaluate/camera" className="mt-8 bg-gray-600 text-white py-2 px-4 rounded-lg hover:bg-gray-700 transition duration-300 ease-in-out shadow-md flex items-center justify-center text-center">
+              Capture With Camera
+            </Link>
+          </div>
+
+          {/*Box 2: Upload*/}
+          <div 
+            className={dropZoneClasses}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
           >
-            Save Photo
-          </button>
-        )}
-      </div>
+            <CloudUploadIcon color="white" size={250} strokeWidth={0.5}></CloudUploadIcon>
+            <p className="text-white-400 text-center">Upload a digital copy of your Electronics Plan in PDF format for fast and accurate processing.</p>
+            <button onClick={PDFButtonClick} className="mt-8 bg-gray-600 text-white py-2 px-4 rounded-lg hover:bg-gray-700 transition duration-300 ease-in-out shadow-md">Upload PDF</button>
+            <p className="text-white-400 text-center italic text-xs mt-1">or drag PDFs here</p>
+          </div>
 
-      {photoURL && (
-        <img
-          src={photoURL}
-          alt="Captured"
-          className="mt-4 border rounded-lg shadow w-full max-w-md"
-        />
-      )}
-
-      <canvas ref={canvasRef} className="hidden"></canvas>
+        </div>
+      
     </div>
+    
   );
 }
