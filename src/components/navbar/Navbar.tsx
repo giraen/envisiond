@@ -39,7 +39,7 @@ export default function Navbar () {
     return (
         <div>
             {/* MOBILE VIEW NAVBAR */}
-            <div className="flex items-center justify-between p-4 bg-[var(--color-background)] text-[var(--color-foreground)] md:hidden">
+            <div className="flex items-center justify-between p-4 bg-[var(--color-background)] text-[var(--color-foreground)] fixed w-full z-50 top-0 md:hidden">
                 <button 
                     onClick={() => setIsOpen(true)} 
                     className="text-3xl font-extrabold"
@@ -52,7 +52,7 @@ export default function Navbar () {
 
             <div
                 className={
-                    `fixed top-0 left-0 h-full w-full bg-[var(--color-foreground)] text-[var(--color-background)] 
+                    `fixed top-0 left-0 h-full w-full bg-[var(--color-foreground)] text-[var(--color-background)] z-50
                     shadow-lg transform transition-transform duration-500 ease-out md:hidden
                     ${isOpen ? "translate-x-0" : "-translate-x-full"}`
                 }
@@ -99,7 +99,7 @@ export default function Navbar () {
             {/* TABLET AND DESKTOP NAVBAR VIEW */}
             <div
                 className="hidden md:flex items-center justify-between px-12 pt-8 
-                bg-[var(--color-background)] text-[var(--color-foreground)] shadow"
+                bg-[var(--color-background)] text-[var(--color-foreground)] shadow fixed w-full z-50 top-0"
             >
                 <h1 className="text-3xl font-bold">LOGO HERE</h1>
 

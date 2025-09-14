@@ -5,7 +5,7 @@ import { CloudUpload as CloudUploadIcon } from 'lucide-react';
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen gap-8 px-4">
+    <div className="flex flex-col items-center justify-center min-h-screen gap-8 px-5 py-25 md:px-4">
       
       {/* Top Section */}
       <div className="max-w-4xl w-full text-center">
@@ -25,51 +25,59 @@ export default function Home() {
       </h2>
 
       {/* Quick Access Box */}
-      <div className="flex flex-col md:flex-row items-center justify-center gap-20 w-full max-w-4xl">
+      <div className="flex flex-col md:flex-row items-center justify-center md:gap-20 w-full max-w-4xl">
         
         {/* First Column */}
-        <div className="flex flex-col items-center justify-center gap-5">
+        <div className="flex flex-col items-center justify-center md:gap-5">
 
           {/* Profile Settings */}
-          <div className="flex items-center justify-center"> 
-            <UserPenIcon color="#004aad" size={100} className="mb-2" />
-            <div className="flex flex-col items-center justify-center">
-              <p className="text-black text-center text-lg font-bold mb-1">Profile Settings</p>
-              <p className="text-black text-center italic mb-6 text-sm font-light">Manage your account details, preferences, and security settings.</p>
+          <a href="/profile">
+            <div className="flex items-center justify-center hover:shadow-lg p-4 rounded-lg transition-all duration-300 cursor-pointer"> 
+              <UserPenIcon color="#004aad" size={100} className="mb-2" />
+              <div className="flex flex-col items-center justify-center">
+                <p className="text-black text-center text-lg font-bold mb-1">Profile Settings</p>
+                <p className="text-black text-center italic mb-6 text-sm font-light">Manage your account details, preferences, and security settings.</p>
+              </div>
             </div>
-          </div>
+          </a>
 
           {/* Fee History */}
-          <div className="flex items-center justify-center"> 
-            <NotepadIcon color="#004aad" size={100} className="mb-2" />
-            <div className="flex flex-col items-center justify-center">
-              <p className="text-black text-center text-lg font-bold mb-1">Fee History</p>
-              <p className="text-black text-center italic mb-6 text-sm font-light">View and download records of your previous billing reports.</p>
+          <a href="/history">
+            <div className="flex items-center justify-center hover:shadow-lg p-4 rounded-lg transition-all duration-300 cursor-pointer"> 
+              <NotepadIcon color="#004aad" size={100} className="mb-2" />
+              <div className="flex flex-col items-center justify-center">
+                <p className="text-black text-center text-lg font-bold mb-1">Fee History</p>
+                <p className="text-black text-center italic mb-6 text-sm font-light">View and download records of your previous billing reports.</p>
+              </div>
             </div>
-          </div>
+          </a>
 
         </div>
 
         {/* Second Column */}
-        <div className="flex flex-col items-center justify-center gap-5">
+        <div className="flex flex-col items-center justify-center md:gap-5">
 
           {/* IECEP PECE Roster */}
-          <div className="flex items-center justify-center"> 
-            <SquareUserIcon color="#004aad" size={100} className="mb-2" />
-            <div className="flex flex-col items-center justify-center">
-              <p className="text-black text-center text-lg font-bold mb-1">IECEP PECE Roster</p>
-              <p className="text-black text-center italic mb-6 text-sm font-light">Official registry of licensed Professional Electronics Engineers (PECE)</p>
+          <a href="">
+            <div className="flex items-center justify-center hover:shadow-lg p-4 rounded-lg transition-all duration-300 cursor-pointer"> 
+              <SquareUserIcon color="#004aad" size={100} className="mb-2" />
+              <div className="flex flex-col items-center justify-center">
+                <p className="text-black text-center text-lg font-bold mb-1">IECEP PECE Roster</p>
+                <p className="text-black text-center italic mb-6 text-sm font-light">Official registry of licensed Professional Electronics Engineers (PECE)</p>
+              </div>
             </div>
-          </div>
+          </a>
 
           {/* New Report */}
-          <div className="flex items-center justify-center"> 
-            <CloudUploadIcon color="#004aad" size={100} className="mb-2" />
-            <div className="flex flex-col items-center justify-center">
-              <p className="text-black text-center text-lg font-bold mb-1">New Report</p>
-              <p className="text-black text-center italic mb-6 text-sm font-light">Upload or scan an electronics plan to generate an automated billing summary.</p>
+          <a href="/evaluate">
+            <div className="flex items-center justify-center hover:shadow-lg p-4 rounded-lg transition-all duration-300 cursor-pointer"> 
+              <CloudUploadIcon color="#004aad" size={100} className="mb-2" />
+              <div className="flex flex-col items-center justify-center">
+                <p className="text-black text-center text-lg font-bold mb-1">New Report</p>
+                <p className="text-black text-center italic mb-6 text-sm font-light">Upload or scan an electronics plan to generate an automated billing summary.</p>
+              </div>
             </div>
-          </div>
+          </a>
           
         </div>
 

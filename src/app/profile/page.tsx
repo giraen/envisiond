@@ -43,36 +43,39 @@ export default function Profile() {
     }
 
     return (
-        <div className="flex flex-col items-center min-h-screen gap-8">
+        <div className="flex flex-col items-center min-h-screen px-4 py-8 md:px-12 py-20">
+            
             {/* Profile box */}
-            <div className="flex items-center justify-center gap-5 mt-10">
-                <div className="relative group" onClick={handleImageClick}>
-                  <UserCircleIcon className="h-40 w-40 text-gray-400 cursor-pointer group-hover:opacity-50 transition-opacity duration-300" />
-                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span className="font-semibold">Upload Picture</span>
-                  </div>
-                  <input
-                    type="file"
-                    id="file-upload"
-                    className="hidden" 
-                    accept=".png, .jpeg, .jpg"
-                    onChange={handleImageChange}
-                    />
-                </div>
-                <div className="flex flex-col">
-                    {isEditing ? (
-                        <input 
-                            type="text"
-                            id="name"
-                            value={name}
-                            onChange={e => setName(e.target.value)}
-                            className="rounded px-4 py-2 w-64 text-black bg-white"
+            <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-4xl gap-4 md:gap-10 mt-10">
+                <div className="flex flex-col md:flex-row items-center gap-4">
+                    <div className="relative group" onClick={handleImageClick}>
+                        <UserCircleIcon className="h-24 w-24 md:h-40 md:w-40 text-gray-500 cursor-pointer group-hover:opacity-50 transition-opacity duration-300" />
+                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span className="font-semibold text-xs md:text-base">Upload Picture</span>
+                        </div>
+                        <input
+                            type="file"
+                            id="file-upload"
+                            className="hidden" 
+                            accept=".png, .jpeg, .jpg"
+                            onChange={handleImageChange}
                         />
-                    ) : (
-                        <p className="text-3xl font-bold mb-1 cursor-not-allowed">{name}</p>
-                    )}
-                    
-                    <p className="italic mb-6 text-m">johndoe@gmail.com</p>
+                    </div>
+                    <div className="flex flex-col text-center md:text-left">
+                        {isEditing ? (
+                            <input 
+                                type="text"
+                                id="name"
+                                value={name}
+                                onChange={e => setName(e.target.value)}
+                                className="rounded px-4 py-2 w-full text-black bg-white shadow-lg text-2xl md:text-3xl"
+                            />
+                        ) : (
+                            <p className="text-3xl md:text-4xl font-bold mb-1 cursor-not-allowed">{name}</p>
+                        )}
+                        
+                        <p className="italic text-sm md:text-base text-gray-500">{email}</p>
+                    </div>
                 </div>
                 <button 
                     onClick={() => {
@@ -80,104 +83,112 @@ export default function Profile() {
                         if (isEditing) {
                         handleSave();
                         }}}
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-150 cursor-pointer"
+                    className="bg-[#004aad] hover:bg-[#00337a] text-white py-2 px-6 rounded-lg transition-colors duration-200"
                 >
                     {isEditing ? 'Save' : 'Edit'}
                 </button>
             </div>
 
             {/* Details box */}
+            <div className="w-full max-w-4xl mt-10">
+                {isEditing ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                        {/* Username Field */}
+                        <div className="flex flex-col gap-2">
+                            <p className="text-lg font-bold">Username</p>
+                            <input 
+                                type="text"
+                                id="username"
+                                value={username}
+                                onChange={e => setUsername(e.target.value)}
+                                className="rounded px-4 py-2 w-full text-black bg-white shadow-lg"
+                            />
+                        </div>
 
-            {isEditing ? (
-                <div className="grid grid-cols-2 gap-8 gap-x-50">
+                        {/* Gender Field */}
+                        <div className="flex flex-col gap-2">
+                            <p className="text-lg font-bold">Gender</p>
+                            <input 
+                                type="text"
+                                id="gender"
+                                value={gender}
+                                onChange={e => setGender(e.target.value)}
+                                className="rounded px-4 py-2 w-full text-black bg-white shadow-lg"
+                            />
+                        </div>
 
-                    <div className="flex flex-col gap-2">
-                        <p className="text-xl font-bold mb-1">Username</p>
-                        <input 
-                            type="text"
-                            id="username"
-                            value={username}
-                            onChange={e => setUsername(e.target.value)}
-                            className="rounded px-4 py-2 w-64 text-black bg-white"
-                        />
+                        {/* Email Address Field */}
+                        <div className="flex flex-col gap-2">
+                            <p className="text-lg font-bold">Email Address</p>
+                            <input 
+                                type="text"
+                                id="email"
+                                value={email}
+                                onChange={e => setEmail(e.target.value)}
+                                className="rounded px-4 py-2 w-full text-black bg-white shadow-lg"
+                            />
+                        </div>
+
+                        {/* License Number Field */}
+                        <div className="flex flex-col gap-2">
+                            <p className="text-lg font-bold">License Number</p>
+                            <input 
+                                type="text"
+                                id="license"
+                                value={license}
+                                onChange={e => setLicense(e.target.value)}
+                                className="rounded px-4 py-2 w-full text-black bg-white shadow-lg"
+                            />
+                        </div>
+
+                        {/* City Hall Field */}
+                        <div className="flex flex-col gap-2">
+                            <p className="text-lg font-bold">City Hall</p>
+                            <input 
+                                type="text"
+                                id="city"
+                                value={city}
+                                onChange={e => setCity(e.target.value)}
+                                className="rounded px-4 py-2 w-full text-black bg-white shadow-lg"
+                            />
+                        </div>
                     </div>
+                ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                        {/* Username Field */}
+                        <div className="flex flex-col gap-2">
+                            <p className="text-lg font-bold">Username</p>
+                            <p className="rounded px-4 py-2 w-full text-gray-500 bg-gray-300 cursor-not-allowed">{username}</p>
+                        </div>
 
-                    <div className="flex flex-col gap-2">
-                        <p className="text-xl font-bold mb-1">Gender</p>
-                        <input 
-                            type="text"
-                            id="gender"
-                            value={gender}
-                            onChange={e => setGender(e.target.value)}
-                            className="rounded px-4 py-2 w-64 text-black bg-white"
-                        />
+                        {/* Gender Field */}
+                        <div className="flex flex-col gap-2">
+                            <p className="text-lg font-bold">Gender</p>
+                            <p className="rounded px-4 py-2 w-full text-gray-500 bg-gray-300 cursor-not-allowed">{gender}</p>
+                        </div>
+
+                        {/* Email Address Field */}
+                        <div className="flex flex-col gap-2">
+                            <p className="text-lg font-bold">Email Address</p>
+                            <p className="rounded px-4 py-2 w-full text-gray-500 bg-gray-300 cursor-not-allowed">{email}</p>
+                        </div>
+
+                        {/* License Number Field */}
+                        <div className="flex flex-col gap-2">
+                            <p className="text-lg font-bold">License Number</p>
+                            <p className="rounded px-4 py-2 w-full text-gray-500 bg-gray-300 cursor-not-allowed">{license}</p>
+                        </div>
+
+                        {/* City Hall Field */}
+                        <div className="flex flex-col gap-2">
+                            <p className="text-lg font-bold">City Hall</p>
+                            <p className="rounded px-4 py-2 w-full text-gray-500 bg-gray-300 cursor-not-allowed">{city}</p>
+                        </div>
                     </div>
-
-                    <div className="flex flex-col gap-2">
-                        <p className="text-xl font-bold mb-1">Email Address</p>
-                        <input 
-                            type="text"
-                            id="email"
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
-                            className="rounded px-4 py-2 w-64 text-black bg-white"
-                        />
-                    </div>
-
-                    <div className="flex flex-col gap-2">
-                        <p className="text-xl font-bold mb-1">License Number</p>
-                        <input 
-                            type="text"
-                            id="license"
-                            value={license}
-                            onChange={e => setLicense(e.target.value)}
-                            className="rounded px-4 py-2 w-64 text-black bg-white"
-                        />
-                    </div>
-
-                    <div className="flex flex-col gap-2">
-                        <p className="text-xl font-bold mb-1">City Hall</p>
-                        <input 
-                            type="text"
-                            id="city"
-                            value={city}
-                            onChange={e => setCity(e.target.value)}
-                            className="rounded px-4 py-2 w-64 text-black bg-white"
-                        />
-                    </div>
-
-                </div>
-            ) : (
-                <div className="grid grid-cols-2 gap-8 gap-x-50">
-
-                    <div className="flex flex-col gap-2">
-                        <p className="text-xl font-bold mb-1">Username</p>
-                        <p className="rounded px-4 py-2 w-64 text-gray-600 bg-gray-400 cursor-not-allowed">{username}</p>
-                    </div>
-
-                    <div className="flex flex-col gap-2">
-                        <p className="text-xl font-bold mb-1">Gender</p>
-                        <p className="rounded px-4 py-2 w-64 text-gray-600 bg-gray-400 cursor-not-allowed">{gender}</p>
-                    </div>
-
-                    <div className="flex flex-col gap-2">
-                        <p className="text-xl font-bold mb-1">Email Address</p>
-                        <p className="rounded px-4 py-2 w-64 text-gray-600 bg-gray-400 cursor-not-allowed">{email}</p>
-                    </div>
-
-                    <div className="flex flex-col gap-2">
-                        <p className="text-xl font-bold mb-1">License Number</p>
-                        <p className="rounded px-4 py-2 w-64 text-gray-600 bg-gray-400 cursor-not-allowed">{license}</p>
-                    </div>
-
-                    <div className="flex flex-col gap-2">
-                        <p className="text-xl font-bold mb-1">City Hall</p>
-                        <p className="rounded px-4 py-2 w-64 text-gray-600 bg-gray-400 cursor-not-allowed">{city}</p>
-                    </div>
-
-                </div>
-            )}
-
+                )}
+            </div>
         </div>
     );
 }
+
+

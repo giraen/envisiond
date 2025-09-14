@@ -18,8 +18,8 @@ export const columns: ColumnDef<EceLayouts>[] = [
         return (
             <span
                 className={`
-                    ${row.original.status == "done" ? "bg-green-500" : "bg-orange-400"}
-                    text-black px-2 py-1 rounded-xl text-xs font-normal uppercase
+                    ${row.original.status == "done" ? "bg-green-600" : "bg-orange-500"}
+                    text-white px-2 py-1 rounded-xl text-xs font-normal uppercase
                 `}
             >
                 {row.original.status}

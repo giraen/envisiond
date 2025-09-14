@@ -35,14 +35,14 @@ function RowActions({ item }: { item: EceLayouts }) {
             className="flex justify-end md:justify-center gap-4"
         >
             <button
-                className={`${item.status == "pending" ? "hidden" : "border rounded-md px-2 py-1 text-sm"}`}
+                className={`${item.status == "pending" ? "hidden" : "px-3 py-1 bg-[#004aad] text-white rounded-md hover:bg-[#00337a] text-sm cursor-pointer"}`}
                 onClick={() => console.log("Viewing images for ", item.bill_id)}
             >
                 View
             </button>
 
             <button
-                className={`${item.status == "pending" ? "hidden" : "bg-green-700 rounded-md px-2 py-1 text-sm"}`}
+                className={`${item.status == "pending" ? "hidden" : "px-3 py-1 bg-green-600 text-white rounded-md hover:bg-green-700 text-sm cursor-pointer"}`}
                 onClick={() => console.log("Downloading file for ", item.bill_id)}
             >
                 Download
