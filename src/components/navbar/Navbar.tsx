@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { House, StickyNote, FileClock, LogOut } from "lucide-react";
+import { House, StickyNote, FileClock, LogOut, UserCircle2, User } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 const links = [
@@ -23,6 +23,12 @@ const links = [
         title: "History",
         url: "/history",
         icon: FileClock
+    },
+    {
+        id: 4,
+        title: "Profile",
+        url: "/profile",
+        icon: UserCircle2
     }
 ]
 
