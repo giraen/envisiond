@@ -8,7 +8,6 @@ export default function EvaluatePage() {
   const [previewImage, setPreviewImage] = useState<string | null>(null);
 
   useEffect(() => {
-    // Request access to the user's camera
     navigator.mediaDevices
       .getUserMedia({ video: true })
       .then((stream) => {
@@ -46,11 +45,9 @@ export default function EvaluatePage() {
   };
 
   const batchDownload = async () => {
-    // Dynamically import JSZip only when needed
     const JSZip = (await import("jszip")).default;
     const zip = new JSZip();
     photos.forEach((photo, idx) => {
-      // Remove the data URL prefix before adding to zip
       const base64Data = photo.split(",")[1];
       zip.file(`photo-${idx + 1}.png`, base64Data, { base64: true });
     });
@@ -63,8 +60,11 @@ export default function EvaluatePage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center p-4">
-      <h1 className="text-xl font-bold mb-4">Camera Capture</h1>
+    <div className="flex flex-col items-center justify-center p-4 bg-white text-black min-h-screen">
+      {/* Sticky Header */}
+      <h1 className="text-3xl font-bold mb-4  bg-white text-center py-2 z-20">
+        Camera Capture
+      </h1>
 
       {/* Modal for image preview */}
       {previewImage && (
@@ -76,7 +76,7 @@ export default function EvaluatePage() {
             src={previewImage}
             alt="Preview"
             className="max-h-[98vh] max-w-[98vw] rounded-lg shadow-2xl"
-            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking the image itself
+            onClick={(e) => e.stopPropagation()}
           />
           <button
             className="absolute top-4 right-4 text-white text-3xl font-bold bg-black bg-opacity-50 rounded-full px-3 py-1 hover:bg-opacity-80"
@@ -96,7 +96,7 @@ export default function EvaluatePage() {
             <div className="mt-4 flex gap-2">
               <button
                 onClick={capturePhoto}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700"
+                className="px-4 py-2 bg-blue-600 text-white rounded-md shadow hover:bg-blue-700"
               >
                 Capture Photo
               </button>
@@ -106,20 +106,19 @@ export default function EvaluatePage() {
       ) : (
         // Two-column layout when there are photos
         <div className="flex flex-col md:flex-row items-start justify-center gap-8 w-full">
-
           {/* Left side: Video and buttons */}
-          <div className="flex flex-col items-center justify-center p-4 w-full md:w-1/2">
+          <div className="flex flex-col items-center justify-center p-4 w-full md:w-1/2 md:sticky md:top-12 self-start">
             <video ref={videoRef} autoPlay className="w-full max-w-md rounded-lg shadow" />
             <div className="mt-4 flex gap-2">
               <button
                 onClick={capturePhoto}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700"
+                className="px-4 py-2 bg-blue-600 text-white rounded-md shadow hover:bg-blue-700"
               >
                 Capture Photo
               </button>
               <button
                 onClick={batchDownload}
-                className="px-4 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700"
+                className="px-4 py-2 bg-green-600 text-white rounded-md shadow hover:bg-green-700"
               >
                 Download All ({photos.length})
               </button>
@@ -129,10 +128,12 @@ export default function EvaluatePage() {
           {/* Right side: Photo grid */}
           <div className="mt-4 w-full md:w-1/2 max-w-md">
             <div className="flex justify-between items-center mb-2">
-              <span className="font-semibold">Captured Photos ({photos.length})</span>
+              <span className="font-semibold">
+                Captured Photos ({photos.length})
+              </span>
               <button
                 onClick={clearPhotos}
-                className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-700 text-sm"
+                className="px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-700 text-sm"
               >
                 Clear Captures
               </button>
@@ -157,7 +158,6 @@ export default function EvaluatePage() {
               ))}
             </div>
           </div>
-          
         </div>
       )}
 
