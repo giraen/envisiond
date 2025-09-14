@@ -41,9 +41,9 @@ export default function EvaluatePage() {
   `;
 
   return (
-    <div className="flex flex-col items-center min-h-screen px-2 pt-12">
+    <div className="flex flex-col justify-center items-center min-h-screen px-2 pt-25 md:pt-12">
       {/* Headers and Description */}
-      <p className="text-black text-center text-2xl sm:text-3xl font-bold mb-1">
+      <p className="text-center text-2xl sm:text-3xl font-bold mb-1">
         Generate New Report
       </p>
       <p className="text-black text-center italic mb-6 text-base sm:text-lg">
@@ -79,7 +79,7 @@ export default function EvaluatePage() {
           </p>
           <button
             onClick={PDFButtonClick}
-            className="mt-auto bg-[#004aad] text-white py-2 px-4 rounded-lg transition duration-300 ease-in-out shadow-md w-full hover:bg-[#00337a]"
+            className="mt-auto bg-[#004aad] text-white py-2 px-4 rounded-lg transition duration-300 ease-in-out shadow-md w-full hover:bg-[#00337a] cursor-pointer"
           >
             Upload PDF
           </button>

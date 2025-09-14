@@ -105,20 +105,20 @@ export default function EvaluatePage() {
         </div>
       ) : (
         // Two-column layout when there are photos
-        <div className="flex flex-col md:flex-row items-start justify-center gap-8 w-full">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-8 w-full">
           {/* Left side: Video and buttons */}
           <div className="flex flex-col items-center justify-center p-4 w-full md:w-1/2 md:sticky md:top-12 self-start">
             <video ref={videoRef} autoPlay className="w-full max-w-md rounded-lg shadow" />
             <div className="mt-4 flex gap-2">
               <button
                 onClick={capturePhoto}
-                className="px-4 py-2 bg-blue-600 text-white rounded-md shadow hover:bg-blue-700"
+                className="bg-[#004aad] hover:bg-[#00337a] text-white py-2 px-4 rounded-lg cursor-pointer"
               >
                 Capture Photo
               </button>
               <button
                 onClick={batchDownload}
-                className="px-4 py-2 bg-green-600 text-white rounded-md shadow hover:bg-green-700"
+                className="px-4 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 cursor-pointer"
               >
                 Download All ({photos.length})
               </button>
@@ -133,7 +133,7 @@ export default function EvaluatePage() {
               </span>
               <button
                 onClick={clearPhotos}
-                className="px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-700 text-sm"
+                className="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-700 text-sm"
               >
                 Clear Captures
               </button>

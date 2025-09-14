@@ -31,10 +31,11 @@ export default async function HistoryPage() {
   const data = await getData();
 
   return (
-    <div className='px-6 py-2 space-y-4 md:px-12 mt-8'>
+    <div className='px-6 py-2 space-y-4 md:px-12 mt-30'>
+      <p className='text-center text-2xl sm:text-3xl font-bold mb-1'>Electronics Bill Reports</p>
       <div className='flex flex-col items-center'>
         <ScrollText size={128} strokeWidth={0.5} />
-        <p className='text-justify text-sm md:text-base'>
+        <p className='text-center text-sm md:text-base'>
           View and track all previously generated Electronics Bill reports including dates, plan details and computed fees for easy reference and record keeping
         </p>
       </div>
